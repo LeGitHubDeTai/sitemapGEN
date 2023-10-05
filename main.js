@@ -31,7 +31,7 @@ if (siteOut.endsWith('/')) {
 // Vérifier si le fichier sitemap.xml existe déjà
 if (fs.existsSync(`${inputDirectory}/sitemap.xml`)) {
     console.log('Le fichier sitemap.xml existe déjà.');
-    process.exit(1);
+    process.exit(0);
 }
 
 // Fonction pour générer le sitemap.xml
