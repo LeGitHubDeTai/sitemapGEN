@@ -28,6 +28,12 @@ if (siteOut.endsWith('/')) {
     siteOut = siteOut.slice(0, -1);
 }
 
+// Vérifier si le fichier sitemap.xml existe déjà
+if (fs.existsSync(`${inputDirectory}/sitemap.xml`)) {
+    console.log('Le fichier sitemap.xml existe déjà.');
+    process.exit(1);
+}
+
 // Fonction pour générer le sitemap.xml
 function generateSitemap() {
     const sitemap = xmlbuilder.create('urlset', { version: '1.0', encoding: 'UTF-8' })
