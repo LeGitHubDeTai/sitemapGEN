@@ -1,0 +1,27 @@
+{
+  "name": "sitemapgen",
+  "version": "1.0.0",
+  "description": "generate sitemap from directory",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeGitHubDeTai/sitemapGEN.git"
+  },
+  "keywords": [
+    "sitemap",
+    "generator"
+  ],
+  "author": "Tai Tetsuyuki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LeGitHubDeTai/sitemapGEN/issues"
+  },
+  "homepage": "https://github.com/LeGitHubDeTai/sitemapGEN#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "xmlbuilder": "^15.1.1"
+  }
+}
