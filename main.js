@@ -35,7 +35,6 @@ function generateSitemap() {
         .att('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance')
         .att('xsi:schemaLocation', 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd');
 
-
     // Lire récursivement les fichiers du dossier spécifié
     function readDirectory(directory) {
         const files = fs.readdirSync(directory);
