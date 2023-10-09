@@ -9,6 +9,7 @@ Avant d'exécuter le script, assurez-vous de configurer le fichier `.env` dans l
 ```
 INPUT_DIRECTORY=/chemin/vers/votre/dossier
 SITE_OUT=https://votre-site.com
+EXTENSIONS=['.html', '.php', '.jsx', '.js']
 ```
 
 - `INPUT_DIRECTORY` : Le chemin du dossier contenant les fichiers que vous souhaitez inclure dans le sitemap.

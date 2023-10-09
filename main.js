@@ -15,8 +15,11 @@ const xmlbuilder = require('xmlbuilder');
 dotenv.config();
 
 // Récupérer les valeurs des variables d'environnement
-const inputDirectory = process.env.INPUT_DIRECTORY;
-var siteOut = process.env.SITE_OUT;
+const inputDirectory = process.env.INPUT_DIRECTORY || './out';
+var siteOut = process.env.SITE_OUT || 'wowa';
+
+// Liste des extensions de fichiers autorisées
+const allowedExtensions = process.env.EXTENSIONS || ['.html', '.php', '.jsx', '.js'];
 
 if (!inputDirectory || !siteOut) {
     console.error('Le chemin du dossier d\'entrée ou l\'URL de sortie n\'ont pas été spécifiés dans le fichier .env.');
@@ -52,13 +55,16 @@ function generateSitemap() {
                 // Si c'est un répertoire, récursivement lire son contenu
                 readDirectory(filePath);
             } else {
-                // Si c'est un fichier, ajouter son URL au sitemap sans le chemin du dossier d'entrée
-                const relativePath = path.relative(inputDirectory, filePath);
-                const url = sitemap.ele('url');
-                url.ele('loc', `${siteOut}/${relativePath}`); // Utilisez SITE_OUT pour l'URL
-                url.ele('lastmod', new Date(stats.mtime).toISOString());
-                url.ele('changefreq', 'weekly'); // Fréquence de changement (optionnel)
-                url.ele('priority', '0.8'); // Priorité (optionnel)
+                // Si c'est un fichier avec une extension autorisée, ajouter son URL au sitemap
+                const fileExtension = path.extname(filePath);
+                if (allowedExtensions.includes(fileExtension)) {
+                    const relativePath = path.relative(inputDirectory, filePath);
+                    const url = sitemap.ele('url');
+                    url.ele('loc', `${siteOut}/${relativePath}`); // Utilisez SITE_OUT pour l'URL
+                    url.ele('lastmod', new Date(stats.mtime).toISOString());
+                    url.ele('changefreq', 'weekly'); // Fréquence de changement (optionnel)
+                    url.ele('priority', '0.8'); // Priorité (optionnel)
+                }
             }
         });
     }
